@@ -7,6 +7,7 @@ import androidx.core.view.WindowInsetsControllerCompat;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,11 +35,11 @@ public class MainActivity extends AppCompatActivity {
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.bgvideo);
         bgVideo.setVideoURI(uri);
         bgVideo.start();
-
         bgVideo.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mediaPlayer) {
                 mediaPlayer.setLooping(true);
+                mediaPlayer.start();
             }
         });
 
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void openItalianDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Gira la mano alla tua desta")
+        builder.setMessage("Gira la mano alla tua destra")
                 .setCancelable(false)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -88,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
     }
+
+
 
     private void hideSystemBars() {
         WindowInsetsControllerCompat windowInsetsController =
